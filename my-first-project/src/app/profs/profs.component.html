@@ -1,0 +1,100 @@
+<html>
+<head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+  <script>
+    $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+  </script>
+</head>
+<body style="background-color: white">
+<ng-container *ngIf="snapshot  as listModules; else failureOrLading">
+<div class="container-xl offset-md-1">
+
+  <div class="table-responsive">
+    <div class="table-wrapper">
+      <div class="table-title">
+        <div class="row">
+          <div class="col-sm-5">
+            <h2>Gestion des <b>Professeurs</b></h2>
+          </div>
+          <div class="col-sm-7">
+            <a routerLink="/admin/add-prof" class="btn btn-secondary" style="background-color: #7bc74d;color: white"><i class="material-icons" >&#xE147;</i> <span>Ajout Prof</span></a>
+
+            <div *ngIf="searchProfs">
+              <div class="search_box col-sm-7">
+
+                <form [formGroup]="searchProfs" (ngSubmit)="handleSearchProfs()">
+
+                  <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+
+                  <input  type="text" formControlName="keyword" placeholder="Search...">
+
+                </form>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <table class="table table-striped table-hover"  *ngIf="profs">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nom Complet</th>
+          <th>Email</th>
+          <th>Adresse</th>
+          <th>Telephone</th>
+          <th>Departement</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let p of snapshot | paginate :{itemsPerPage: 4,currentPage:page ,totalItems : totalLenght};
+          let i = index;">
+          <td>{{p.id}}</td>
+          <td><a   onmouseover="this.style.cursor='pointer'" (click)="handleDetailsProf(p)">{{p.nom_complet}}</a></td>
+          <td>{{p.mail}}</td>
+          <td>{{p.tel}}</td>
+          <td>{{p.adresse}}</td>
+          <td><span class="status text-success">&bull;</span>{{p.nom_departement}} </td>
+          <td>
+            <a onmouseover="this.style.cursor='pointer'" (click)="handleEditProf(p)" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">mode_edit</i></a>
+            <a  onmouseover="this.style.cursor='pointer'" (click)="handleDeleteProf(p)" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <div class="clearfix">
+        <div class="hint-text">Showing <b>{{page}}</b> out of <b>{{totalLenght}}</b> entries</div>
+        <pagination-controls class="pagination" (pageChange)="page=$event"></pagination-controls>
+
+      </div>
+    </div>
+  </div>
+</div>
+</ng-container>
+<ng-template #failureOrLading >
+  <ng-container *ngIf="errorMessage; else loading">
+    <div class="text-danger offset-md-3">
+      {{errorMessage}}
+    </div>
+  </ng-container>
+  <ng-template #loading>
+    Loading.....
+
+  </ng-template>
+</ng-template>
+
+
+
+
+</body>
+</html>
+

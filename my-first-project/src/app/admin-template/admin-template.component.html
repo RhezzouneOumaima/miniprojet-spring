@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <script src="assets/main.js"></script>
+
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!--========== BOX ICONS ==========-->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+
+  <!--========== CSS ==========-->
+
+
+  <title>Responsive sidebar submenus</title>
+</head>
+<body >
+<!--========== HEADER ==========-->
+
+<!--========== NAV ==========-->
+<div class="nav" id="navbar" style="background-color: white">
+  <nav class="nav__container" >
+    <div>
+      <a routerLink="/admin/statistics" class="nav__link nav__logo">
+        <i class='bx bxs-institution'></i>
+
+        <span class="nav__logo-name">-Etablissement Scolaire</span>
+      </a>
+
+      <div class="nav__list">
+        <div class="nav__items">
+          <h3 class="nav__subtitle">Gestions</h3>
+
+          <a routerLink="/admin/home" class="nav__link active">
+            <i class='bx bx-home nav__icon' ></i>
+            <span class="nav__name">Des Départements</span>
+          </a>
+
+
+
+
+            <a routerLink="/admin/profs" href="https://www.flaticon.com/free-icons/teacher" class="nav__link">
+
+              <i class='bx bx-user nav__icon' ></i>
+              <span class="nav__name">Des Professeurs</span>
+
+            </a>
+
+
+
+
+          <a routerLink="/admin/modules" class="nav__link">
+            <i class='bx bx-book nav__icon' ></i>
+            <span class="nav__name">Des Modules</span>
+          </a>
+          <a routerLink="/admin/etudiants" class="nav__link active">
+          <i class='bx bxs-graduation nav__icon' ></i>
+          <span class="nav__name">Des Etudiants</span>
+        </a>
+
+        </div>
+
+        <div class="nav__items">
+          <h3 class="nav__subtitle">Paramètres </h3>
+          <a (click)="handleLogout()"  onmouseover="this.style.cursor='pointer'"  class="nav__link active">
+            <i class='bx bx-log-out nav__icon' ></i>
+            <span class="nav__name">Log Out</span>
+
+          </a>
+        </div>
+      </div>
+    </div>
+
+
+  </nav>
+</div>
+
+<!--========== CONTENTS ==========-->
+
+
+<main>
+  <section>
+
+  </section>
+</main>
+
+<!--========== MAIN JS ==========-->
+
+</body>
+</html>
+<router-outlet>
+
+
+</router-outlet>
